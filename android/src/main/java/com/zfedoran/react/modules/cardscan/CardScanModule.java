@@ -60,7 +60,7 @@ public class CardScanModule extends ReactContextBaseJavaModule implements Activi
         // MY_SCAN_REQUEST_CODE is arbitrary and is only used within this activity.
         currentActivity.startActivityForResult(scanIntent, MY_SCAN_REQUEST_CODE);
     }
-    public void activityListener() {
+    public void activityListener(Intent data) {
         String resultStr;
         if (data != null && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
             CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
@@ -84,9 +84,9 @@ public class CardScanModule extends ReactContextBaseJavaModule implements Activi
         }
     }
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-       this.activityListener();
+       this.activityListener(data);
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        this.activityListener();
+        this.activityListener(data);
     }
 }
